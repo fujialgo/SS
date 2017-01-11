@@ -4,12 +4,10 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public GameObject bullet;
-
     const float m_speed = 0.01f;
 
     void Update()
     {
-       
         Ray m_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 m_mousePos = m_ray.origin;
 
@@ -22,7 +20,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+            var obj = Instantiate(bullet, transform.position,Quaternion.identity) as GameObject;
+            obj.transform.eulerAngles = transform.eulerAngles;
+
         }
     }
 }
