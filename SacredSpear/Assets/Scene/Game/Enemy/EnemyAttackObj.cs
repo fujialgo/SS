@@ -15,7 +15,6 @@ public class EnemyAttackObj : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit "+other.tag);
         if (other.transform.tag == "Wall")
         {
             other.transform.GetComponent<WallScript>().mHp -= mPower;
