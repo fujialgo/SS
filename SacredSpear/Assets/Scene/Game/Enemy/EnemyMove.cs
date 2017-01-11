@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum eEnemyState {
     eWalk,eAttack,eDead,eMAX
@@ -10,10 +11,12 @@ public class EnemyMove : MonoBehaviour {
     private int m_power;
     [SerializeField]
     private int m_hp;
+    [SerializeField]
+    private int m_score;
 
     [SerializeField]
     private int m_velocity;
-
+    private Score m_scoreObj;
     [SerializeField]
     private GameObject m_attackObjPrefs;
     public delegate void StateCall();
@@ -30,6 +33,7 @@ public class EnemyMove : MonoBehaviour {
         m_stateFunc[(int)eEnemyState.eAttack] = mEnemyAttack;
         m_stateFunc[(int)eEnemyState.eDead] = mEnemyDead;
 
+        m_scoreObj = GameObject.Find("Score").GetComponent<Score>();
 	}
 
     // Update is called once per frame
@@ -59,6 +63,10 @@ public class EnemyMove : MonoBehaviour {
         {
             mCreateAttack();
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            mDeath();
+        }
     }
     protected virtual void mEnemyDead()
     {
@@ -83,9 +91,10 @@ public class EnemyMove : MonoBehaviour {
         }
     }
 
-    public void Death()
+    public void mDeath()
     {
         Destroy(gameObject.GetComponent<Collider2D>());
+        m_scoreObj.mScore += m_score;
         m_stateNum = eEnemyState.eDead;
     }
 }
