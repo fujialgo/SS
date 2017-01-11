@@ -2,19 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour {
+public class Point : MonoBehaviour {
 
-    public float mScore
+    public int mPoint
     {
         get; set;
     }
 	// Use this for initialization
 	void Start () {
-        mScore = 0;
+        mPoint = 100;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Text>().text = "Score:" + mScore;
+        GetComponent<Text>().text = "Point:" + mPoint.ToString();
 	}
 }
