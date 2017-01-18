@@ -14,6 +14,8 @@ public class WallScript : MonoBehaviour {
     }
     [SerializeField]
     private Point m_pointObj;
+    [SerializeField]
+    private SpriteChange m_wallHp;
 
     private float m_HealMagnification = 1.0f;
     [SerializeField]
@@ -28,6 +30,9 @@ public class WallScript : MonoBehaviour {
         m_text.text = m_hp.ToString();
         if (m_hp <= 0)
         {
+            m_wallHp.GetComponent<SpriteChange>().mSpriteChange();
+            m_wallHp.GetComponent<SpriteChange>().mTextChange();
+
             DestroyObject(gameObject);
         }
 	}

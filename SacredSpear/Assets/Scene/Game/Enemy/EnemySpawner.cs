@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            var obj = Instantiate(enemyPrefs);
+            var obj = Instantiate(enemyPrefs[0]);
             obj.transform.position = transform.position;
         }
 

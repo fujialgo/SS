@@ -89,6 +89,7 @@ public class EnemyMove : MonoBehaviour {
 
     public void mDeath()
     {
+        if (m_hp > 0) return;
         Destroy(gameObject.GetComponent<Collider2D>());
         m_pointObj.mPoint += m_score;
         m_stateNum = eEnemyState.eDead;
