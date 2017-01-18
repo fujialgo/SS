@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameInfo : MonoBehaviour {
+public class GameInfo : Singleton<GameInfo> {
     [SerializeField]
     Point m_point;
     public Point mPoint

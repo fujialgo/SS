@@ -17,4 +17,5 @@ public class Point : MonoBehaviour {
 	void Update () {
         GetComponent<Text>().text = "Point:" + mPoint.ToString();
 	}
+
 }
