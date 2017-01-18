@@ -11,6 +11,10 @@ public class EnemyMove : MonoBehaviour {
     private int m_power;
     [SerializeField]
     private int m_hp;
+    public int mHp
+    {
+        get { return m_hp; } set { m_hp = value; }
+    }
     [SerializeField]
     private int m_score;
 

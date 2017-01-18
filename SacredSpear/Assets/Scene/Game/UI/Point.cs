@@ -10,7 +10,7 @@ public class Point : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        mPoint = 100;
+        mPoint = 0;
 	}
 	
 	// Update is called once per frame
