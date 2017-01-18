@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
-    GameObject enemyPrefs;
+    GameObject[] enemyPrefs;
 	// Use this for initialization
 	void Start () {
 	    
@@ -17,5 +17,7 @@ public class EnemySpawner : MonoBehaviour {
             var obj = Instantiate(enemyPrefs);
             obj.transform.position = transform.position;
         }
+
+
 	}
 }
