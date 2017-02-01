@@ -4,15 +4,27 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
-    GameObject[] enemyPrefs;
+    GameObject[] m_EnemyPrefs;
 
-    int m_lowTable = 0;
-    int m_hiTable = 1;
+    float m_lowTable = 0;
+    float m_hiTable = 1;
 
     float m_spawnTime;
     float m_timeTick;
+    int m_waveCount;
 
+    int m_enemyCnt;
+
+    const int mkSpawnMax = 20;
     const float mkSpawnTimeMax = 1.2f;
+    const float mkWaveAddtional = 0.3f;
+
+
+    public int mWaveNum
+    {
+        get { return (int)(m_lowTable / 0.2f)+1; } 
+    }
+
 	// Use this for initialization
 	void Start () {
         m_spawnTime = Random.Range(0, mkSpawnTimeMax);
@@ -21,11 +33,6 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         m_timeTick += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            var obj = Instantiate(enemyPrefs[0]);
-            obj.transform.position = transform.position;
-        }
 
         if(m_timeTick >= m_spawnTime)
         {
@@ -33,13 +40,37 @@ public class EnemySpawner : MonoBehaviour {
             m_spawnTime = Random.Range(0, mkSpawnTimeMax);
             mCreate();
         }
+
+        if(m_enemyCnt >= mkSpawnMax)
+        {
+            mToNextWave();
+        }
 	}
 
+    //waveToNext
+    void mToNextWave() {
+        if (m_lowTable <= m_EnemyPrefs.Length)
+        {
+            m_lowTable += mkWaveAddtional;
+        }
+        if(m_hiTable <= m_EnemyPrefs.Length) {
+            m_hiTable += mkWaveAddtional;
+        }
+        m_enemyCnt = 0;
+
+
+    }
+
+
+
+    //敵生成メソッド
     void mCreate()
     {
-        int rand = Random.Range(m_lowTable, m_hiTable);
-        var obj = Instantiate(enemyPrefs[rand]);
+        int rand = (int)Random.Range(m_lowTable, m_hiTable);
+        Debug.Log(rand);
+        var obj = Instantiate(m_EnemyPrefs[rand]);
         obj.transform.position = transform.position;
+        m_enemyCnt++;
     }
 
 
