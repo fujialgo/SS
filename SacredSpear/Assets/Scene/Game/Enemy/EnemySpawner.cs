@@ -18,7 +18,10 @@ public class EnemySpawner : MonoBehaviour {
     const float mkSpawnTimeMax = 1.2f;
     const float mkWaveAddtional = 0.3f;
 
-
+#if UNITY_EDITOR
+    [SerializeField]
+    int m_debugWave;
+#endif
     public int mWaveNum
     {
         get { return (int)(m_lowTable / mkWaveAddtional)+1; } 
@@ -27,8 +30,12 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_spawnTime = Random.Range(0, mkSpawnTimeMax);
-        m_lowTable = 3;
-        m_hiTable = 4;
+
+#if UNITY_EDITOR
+        m_lowTable = m_debugWave - 1;
+        m_hiTable = m_debugWave;
+#endif
+
     }
 
     // Update is called once per frame
