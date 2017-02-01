@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour {
 
     float m_spawnTime;
     float m_timeTick;
-    int m_waveCount;
 
     int m_enemyCnt;
 
@@ -22,16 +21,18 @@ public class EnemySpawner : MonoBehaviour {
 
     public int mWaveNum
     {
-        get { return (int)(m_lowTable / 0.2f)+1; } 
+        get { return (int)(m_lowTable / mkWaveAddtional)+1; } 
     }
 
 	// Use this for initialization
 	void Start () {
         m_spawnTime = Random.Range(0, mkSpawnTimeMax);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        m_lowTable = 3;
+        m_hiTable = 4;
+    }
+
+    // Update is called once per frame
+    void Update () {
         m_timeTick += Time.deltaTime;
 
         if(m_timeTick >= m_spawnTime)
@@ -49,11 +50,12 @@ public class EnemySpawner : MonoBehaviour {
 
     //waveToNext
     void mToNextWave() {
-        if (m_lowTable <= m_EnemyPrefs.Length)
+        Debug.Log(m_lowTable + "low = hi" + m_hiTable);
+        if (m_lowTable <= m_EnemyPrefs.Length-2)
         {
             m_lowTable += mkWaveAddtional;
         }
-        if(m_hiTable <= m_EnemyPrefs.Length) {
+        if(m_hiTable <= m_EnemyPrefs.Length-1) {
             m_hiTable += mkWaveAddtional;
         }
         m_enemyCnt = 0;
@@ -67,7 +69,7 @@ public class EnemySpawner : MonoBehaviour {
     void mCreate()
     {
         int rand = (int)Random.Range(m_lowTable, m_hiTable);
-        Debug.Log(rand);
+//        Debug.Log(rand);
         var obj = Instantiate(m_EnemyPrefs[rand]);
         obj.transform.position = transform.position;
         m_enemyCnt++;

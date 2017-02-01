@@ -5,12 +5,12 @@ public class Spear: Weapon
 {
     void Start()
     {
-
+        m_power = 1;
     }
 
     void Update()
     {
-        Debug.Log(m_power);
+//        Debug.Log(m_power);
 
         if (!GetComponent<Renderer>().isVisible)
         {
@@ -25,7 +25,7 @@ public class Spear: Weapon
         {
             Destroy(gameObject);
             other.gameObject.GetComponent<EnemyMove>().mHp -= m_power;
-            if (other.gameObject.GetComponent<EnemyMove>().mHp >=0)
+            if (other.gameObject.GetComponent<EnemyMove>().mHp <=0)
             {
                 other.gameObject.GetComponent<EnemyMove>().mDeath();
             }
