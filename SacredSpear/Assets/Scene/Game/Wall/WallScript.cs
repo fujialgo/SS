@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 public class WallScript : MonoBehaviour {
     [SerializeField]
-    private Text m_text;
+    private Image m_wallBar;
+
     [SerializeField]
     private int m_hp;
     private int m_maxHp;
@@ -27,7 +28,7 @@ public class WallScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        m_text.text = m_hp.ToString();
+        m_wallBar.fillAmount = (float)m_hp / m_maxHp;
         if (m_hp <= 0)
         {
             m_wallHp.GetComponent<SpriteChange>().mSpriteChange();
@@ -43,8 +44,21 @@ public class WallScript : MonoBehaviour {
         if(m_pointObj.mPoint > (int)healpoint)
         {
             m_pointObj.mPoint -= (int)healpoint;
-            mHp += (int)(m_maxHp * 0.3f);
             m_HealMagnification *= 1.2f;
+            StartCoroutine(mHealAnim((int)(m_maxHp * 0.4f)+m_hp));
+        }
+    }
+
+    IEnumerator mHealAnim(float val)
+    {
+        float accel = 1.2f;
+        float vol = 5;
+        while (true)
+        {
+            vol *= accel;
+            m_hp += (int)vol;
+            yield return null;
+            if (m_hp >=val) yield break;
         }
     }
 }

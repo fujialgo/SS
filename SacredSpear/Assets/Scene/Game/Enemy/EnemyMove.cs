@@ -21,8 +21,10 @@ public class EnemyMove : MonoBehaviour {
     [SerializeField]
     private int m_velocity;
     private Point m_pointObj;
+
     [SerializeField]
     private GameObject m_attackObjPrefs;
+
     public delegate void StateCall();
     protected StateCall[] m_stateFunc;
     protected eEnemyState m_stateNum;
