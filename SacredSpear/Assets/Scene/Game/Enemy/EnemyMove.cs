@@ -55,6 +55,10 @@ public class EnemyMove : MonoBehaviour {
         {
             m_stateNum = eEnemyState.eAttack;
         }
+        if(other.transform.tag == "Ground")
+        {
+            GameInfo.mInstance.mSceneChange("GameOver");
+        }
     }
 
     //派生先でも記述可能とする

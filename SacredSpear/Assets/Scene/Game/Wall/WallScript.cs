@@ -25,9 +25,10 @@ public class WallScript : MonoBehaviour {
     void Start () {
         m_maxHp = mHp;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         m_wallBar.fillAmount = (float)m_hp / m_maxHp;
         if (m_hp <= 0)
         {
@@ -36,7 +37,22 @@ public class WallScript : MonoBehaviour {
 
             DestroyObject(gameObject);
         }
-	}
+        IfuseCheck();
+    }
+
+    //壁回復ボタンが使用可能かどうかのチェック
+    void IfuseCheck()
+    {
+        if (m_HealPoint * m_HealMagnification < m_pointObj.mPoint)
+        {
+            m_wallHp.GetComponent<ButtonStateChange>().mSetInteractable(true);
+        }
+        else
+        {
+            m_wallHp.GetComponent<ButtonStateChange>().mSetInteractable(false);
+        }
+
+    }
 
     public void mHealWall()
     {
@@ -51,8 +67,8 @@ public class WallScript : MonoBehaviour {
 
     IEnumerator mHealAnim(float val)
     {
-        float accel = 1.2f;
-        float vol = 5;
+        float accel = 1.1f;
+        float vol = 1;
         while (true)
         {
             vol *= accel;

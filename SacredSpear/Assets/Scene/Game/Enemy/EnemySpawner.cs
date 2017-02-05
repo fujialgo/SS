@@ -14,28 +14,19 @@ public class EnemySpawner : MonoBehaviour {
 
     int m_enemyCnt;
 
+
     const int mkSpawnMax = 20;
     const float mkSpawnTimeMax = 1.2f;
     const float mkWaveAddtional = 0.3f;
 
-#if UNITY_EDITOR
-    [SerializeField]
-    int m_debugWave;
-#endif
-    public int mWaveNum
-    {
-        get { return (int)(m_lowTable / mkWaveAddtional)+1; } 
-    }
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         m_spawnTime = Random.Range(0, mkSpawnTimeMax);
 
 #if UNITY_EDITOR
-        m_lowTable = m_debugWave - 1;
-        m_hiTable = m_debugWave;
+        m_lowTable = (GameInfo.mInstance.mWaveManager.mWaveNum) * mkWaveAddtional;
+        m_hiTable = GameInfo.mInstance.mWaveManager.mWaveNum * mkWaveAddtional;
 #endif
-
     }
 
     // Update is called once per frame
@@ -51,13 +42,17 @@ public class EnemySpawner : MonoBehaviour {
 
         if(m_enemyCnt >= mkSpawnMax)
         {
-            mToNextWave();
+            float time = 4.0f;
+            m_timeTick = -time;
+            StartCoroutine(mToNextWave(time));
         }
 	}
 
     //waveToNext
-    void mToNextWave() {
-        Debug.Log(m_lowTable + "low = hi" + m_hiTable);
+    IEnumerator mToNextWave(float time) {
+        m_enemyCnt = 0;
+        yield return new WaitForSeconds(time);
+
         if (m_lowTable <= m_EnemyPrefs.Length-2)
         {
             m_lowTable += mkWaveAddtional;
@@ -65,9 +60,9 @@ public class EnemySpawner : MonoBehaviour {
         if(m_hiTable <= m_EnemyPrefs.Length-1) {
             m_hiTable += mkWaveAddtional;
         }
-        m_enemyCnt = 0;
 
-
+        GameInfo.mInstance.mWaveManager.mWaveNum++;
+        yield break;
     }
 
 
