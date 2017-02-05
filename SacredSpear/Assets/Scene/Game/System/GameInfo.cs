@@ -18,9 +18,16 @@ public class GameInfo : Singleton<GameInfo> {
     }
 
 
+    [SerializeField]
+    float m_gameSpeed;
+    public float mGameSpeed
+    {
+        get { return m_gameSpeed; }
+        set { m_gameSpeed = value; }
+    }
+
     public void mSceneChange(string str)
     {
         SceneManager.LoadScene(str);
     }
-
 }

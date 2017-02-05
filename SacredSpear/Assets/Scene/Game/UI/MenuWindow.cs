@@ -44,7 +44,7 @@ public class MenuWindow : MonoBehaviour {
         {
             gameObject.SetActive(false);
             m_contents.SetActive(false);
-            Time.timeScale = 1;
+            Time.timeScale = GameInfo.mInstance.mGameSpeed;
         });
     }
 
