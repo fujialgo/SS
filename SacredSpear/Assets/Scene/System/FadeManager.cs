@@ -6,31 +6,31 @@ using UnityEngine.Events;
 public class FadeManager : MonoBehaviour {
 
     [SerializeField]
-    UnityEvent m_begin = new UnityEvent();
+    UnityEvent m_in = new UnityEvent();
     [SerializeField]
-    UnityEvent m_end = new UnityEvent();
+    UnityEvent m_out = new UnityEvent();
 
     const float mkFadeTime = 1.0f;
 
     public void mFadeIn()
     {
-        DOTween.To(() => transform.GetComponent<Image>().color,
-                        x => transform.GetComponent<Image>().color = x,
+        DOTween.To(() => transform.GetComponentInChildren<Image>().color,
+                        x => transform.GetComponentInChildren<Image>().color = x,
                         new Color(0, 0, 0, 1),mkFadeTime).
 
                         OnComplete(() => {
-                            m_begin.Invoke();
+                            m_in.Invoke();
                         }); 
     }
 
     public void mFadeOut()
     {
-        DOTween.To(() => transform.GetComponent<Image>().color,
-                        x => transform.GetComponent<Image>().color = x,
+        DOTween.To(() => transform.GetComponentInChildren<Image>().color,
+                        x => transform.GetComponentInChildren<Image>().color = x,
                         new Color(0, 0, 0, 0), mkFadeTime).
 
                         OnComplete(() => {
-                            m_end.Invoke();
+                            m_out.Invoke();
                         });
     }
 

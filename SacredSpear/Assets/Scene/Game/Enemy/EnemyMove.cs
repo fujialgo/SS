@@ -55,9 +55,9 @@ public class EnemyMove : MonoBehaviour {
         {
             m_stateNum = eEnemyState.eAttack;
         }
-        if(other.transform.tag == "Ground")
+        if(other.transform.tag == "DeadLine")
         {
-            GameInfo.mInstance.mSceneLoader.mSceneLoad("GameOver");
+            GameInfo.mInstance.mSceneLoad("GameOver");
         }
     }
 

@@ -18,7 +18,7 @@ public class MenuWindow : MonoBehaviour {
 
     public void mOpen()
     {
-        transform.DOScaleY(1, 0.2f).OnComplete(()=>
+        transform.DOScaleY(1, 0.5f).OnComplete(()=>
         {
             gameObject.SetActive(true);
             m_contents.SetActive(true);
@@ -31,7 +31,7 @@ public class MenuWindow : MonoBehaviour {
 
     public void mClose()
     {
-        transform.DOScaleY(0, 0.2f).OnStart(() => 
+        transform.DOScaleY(0, 0.5f).OnStart(() => 
         {
             gameObject.SetActive(false);
             m_contents.SetActive(false);

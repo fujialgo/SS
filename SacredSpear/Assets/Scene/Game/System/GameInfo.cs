@@ -25,22 +25,38 @@ public class GameInfo : Singleton<GameInfo> {
         set { m_gameSpeed = value; }
     }
 
-    [SerializeField]
-    SceneLoader m_sceneLoader;
-    public SceneLoader mSceneLoader
-    {
-        get { return m_sceneLoader; }
-    }
 
     public bool mIsPause
     {
         get; set;
     }
 
+    [SerializeField]
+    FadeManager m_fadeManager;
+    string m_nextLoadSceneName;
+
     protected override void Awake()
     {
-        base.Awake();
+        m_fadeManager.gameObject.SetActive(true);
+    }
+
+    void Start()
+    {
+        m_fadeManager.mFadeOut();
         mIsPause = false;
+    }
+
+
+
+    public void mSceneLoad(string str)
+    {
+        m_nextLoadSceneName = str;
+        m_fadeManager.mFadeIn();
+    }
+
+    public void mSceneActivate()
+    {
+        GetComponent<SceneLoader>().mSceneLoad(m_nextLoadSceneName);
     }
 
 }
