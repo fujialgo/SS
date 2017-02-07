@@ -15,16 +15,6 @@ public class MenuWindow : MonoBehaviour {
 
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
     public void mOpen()
     {
@@ -33,6 +23,7 @@ public class MenuWindow : MonoBehaviour {
             gameObject.SetActive(true);
             m_contents.SetActive(true);
             Time.timeScale = 0;
+            GameInfo.mInstance.mIsPause = true;
         });
        
     }
@@ -45,6 +36,7 @@ public class MenuWindow : MonoBehaviour {
             gameObject.SetActive(false);
             m_contents.SetActive(false);
             Time.timeScale = GameInfo.mInstance.mGameSpeed;
+            GameInfo.mInstance.mIsPause = false;
         });
     }
 

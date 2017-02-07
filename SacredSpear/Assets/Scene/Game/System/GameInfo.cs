@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class GameInfo : Singleton<GameInfo> {
     [SerializeField]
@@ -26,8 +25,22 @@ public class GameInfo : Singleton<GameInfo> {
         set { m_gameSpeed = value; }
     }
 
-    public void mSceneChange(string str)
+    [SerializeField]
+    SceneLoader m_sceneLoader;
+    public SceneLoader mSceneLoader
     {
-        SceneManager.LoadScene(str);
+        get { return m_sceneLoader; }
     }
+
+    public bool mIsPause
+    {
+        get; set;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        mIsPause = false;
+    }
+
 }

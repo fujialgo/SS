@@ -12,13 +12,4 @@ public class WaveManager : MonoBehaviour {
         set { m_waveCnt = value; }
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

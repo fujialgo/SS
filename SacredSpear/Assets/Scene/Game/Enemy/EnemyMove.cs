@@ -57,7 +57,7 @@ public class EnemyMove : MonoBehaviour {
         }
         if(other.transform.tag == "Ground")
         {
-            GameInfo.mInstance.mSceneChange("GameOver");
+            GameInfo.mInstance.mSceneLoader.mSceneLoad("GameOver");
         }
     }
 
