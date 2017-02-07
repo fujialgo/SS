@@ -18,12 +18,16 @@ public class MenuWindow : MonoBehaviour {
 
     public void mOpen()
     {
-        transform.DOScaleY(1, 0.5f).OnComplete(()=>
-        {
-            gameObject.SetActive(true);
-            m_contents.SetActive(true);
-            Time.timeScale = 0;
-            GameInfo.mInstance.mIsPause = true;
+        transform.DOScaleY(1, 0.2f)
+            
+            .OnStart(() => {
+                gameObject.SetActive(true);
+                GameInfo.mInstance.mIsPause = true;
+            })
+            
+            .OnComplete(()=>     {
+                m_contents.SetActive(true);
+                Time.timeScale = 0;
         });
        
     }
@@ -31,12 +35,15 @@ public class MenuWindow : MonoBehaviour {
 
     public void mClose()
     {
-        transform.DOScaleY(0, 0.5f).OnStart(() => 
-        {
-            gameObject.SetActive(false);
-            m_contents.SetActive(false);
-            Time.timeScale = GameInfo.mInstance.mGameSpeed;
-            GameInfo.mInstance.mIsPause = false;
+        transform.DOScaleY(0, 0.2f)
+            
+            .OnStart(() => {
+                m_contents.SetActive(false);
+                Time.timeScale = GameInfo.mInstance.mGameSpeed;
+        })
+            .OnComplete(() => {
+                gameObject.SetActive(false);
+                GameInfo.mInstance.mIsPause = false;
         });
     }
 

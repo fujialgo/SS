@@ -16,9 +16,9 @@ public class FadeManager : MonoBehaviour {
     {
         DOTween.To(() => transform.GetComponentInChildren<Image>().color,
                         x => transform.GetComponentInChildren<Image>().color = x,
-                        new Color(0, 0, 0, 1),mkFadeTime).
-
-                        OnComplete(() => {
+                        new Color(0, 0, 0, 1),mkFadeTime)
+                        
+                        .OnComplete(() => {
                             m_in.Invoke();
                         }); 
     }
@@ -27,9 +27,9 @@ public class FadeManager : MonoBehaviour {
     {
         DOTween.To(() => transform.GetComponentInChildren<Image>().color,
                         x => transform.GetComponentInChildren<Image>().color = x,
-                        new Color(0, 0, 0, 0), mkFadeTime).
-
-                        OnComplete(() => {
+                        new Color(0, 0, 0, 0), mkFadeTime)
+                        
+                        .OnComplete(() => {
                             m_out.Invoke();
                         });
     }

@@ -6,6 +6,9 @@ public class GameSpeedUp : MonoBehaviour {
 
     Text text;
 
+    [SerializeField]
+    float m_maxSpeed;
+
     void Start() {
         GameInfo.mInstance.mGameSpeed = 1.0f;
         text = GetComponentInChildren<Text>();
@@ -24,7 +27,7 @@ public class GameSpeedUp : MonoBehaviour {
     {
         float speed = GameInfo.mInstance.mGameSpeed;
 
-        if (speed >= 4.0f){
+        if (speed >= m_maxSpeed){
             speed = 0.0f;
         }
         speed += 1.0f;
