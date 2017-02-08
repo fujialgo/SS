@@ -4,7 +4,14 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public GameObject bullet;
-    const float m_speed = 0.01f;
+
+    private Weapon weapon;
+    
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
@@ -23,6 +30,9 @@ public class Player : MonoBehaviour
             var obj = Instantiate(bullet, transform.position,Quaternion.identity) as GameObject;
             obj.transform.eulerAngles = transform.eulerAngles;
 
+            weapon = GetComponent<Weapon>();
+            obj.GetComponent<Spear>().m_power = weapon.m_level;
+            Debug.Log(obj.GetComponent<Spear>().m_power);
         }
     }
 }

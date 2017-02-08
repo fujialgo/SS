@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spear: Weapon
-{
+public class Spear: MonoBehaviour
+{ 
+    [SerializeField]
+    public int m_power;
+    [SerializeField]
+    public int m_speed;
+
     void Start()
     {
-        m_power = 1;
+    
     }
 
     void Update()
     {
-//        Debug.Log(m_power);
-
         if (!GetComponent<Renderer>().isVisible)
         {
             Destroy(this.gameObject);
         }
-        transform.Translate(Vector3.up * m_speed *Time.deltaTime);
+        transform.Translate(Vector3.up * m_speed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +32,6 @@ public class Spear: Weapon
             {
                 other.gameObject.GetComponent<EnemyMove>().mDeath();
             }
-
         }
     }
 }
