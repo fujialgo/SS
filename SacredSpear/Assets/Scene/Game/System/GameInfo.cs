@@ -42,6 +42,7 @@ public class GameInfo : Singleton<GameInfo> {
 
     void Start()
     {
+        GameInfo.mInstance.mGameSpeed = Time.timeScale;
         m_fadeManager.mFadeOut();
         mIsPause = false;
     }
@@ -50,6 +51,7 @@ public class GameInfo : Singleton<GameInfo> {
 
     public void mSceneLoad(string str)
     {
+        GameInfo.mInstance.mGameSpeed = 1.0f;
         m_nextLoadSceneName = str;
         m_fadeManager.mFadeIn();
     }
