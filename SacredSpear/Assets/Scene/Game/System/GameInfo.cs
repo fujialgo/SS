@@ -37,12 +37,14 @@ public class GameInfo : Singleton<GameInfo> {
 
     protected override void Awake()
     {
+        base.Awake();
         m_fadeManager.gameObject.SetActive(true);
+        GameInfo.mInstance.mGameSpeed = 1.0f;
+        Time.timeScale = 1.0f;
     }
 
     void Start()
     {
-        GameInfo.mInstance.mGameSpeed = Time.timeScale;
         m_fadeManager.mFadeOut();
         mIsPause = false;
     }

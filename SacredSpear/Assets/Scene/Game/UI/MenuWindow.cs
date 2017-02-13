@@ -6,19 +6,19 @@ public class MenuWindow : MonoBehaviour {
     [SerializeField]
     GameObject m_contents;
 
+
+    const float mkAnimateTime = 0.2f;
     //初期化
     void Awake()
     {
-        transform.localScale = new Vector3(1, 0, 1);
         m_contents.SetActive(false);
-        gameObject.SetActive(false);
-
+        gameObject.SetActive(true);
     }
 
 
     public void mOpen()
     {
-        transform.DOScaleY(1, 0.2f)
+        transform.DOScaleY(1, mkAnimateTime)
             
             .OnStart(() => {
                 gameObject.SetActive(true);
@@ -35,7 +35,7 @@ public class MenuWindow : MonoBehaviour {
 
     public void mClose()
     {
-        transform.DOScaleY(0, 0.2f)
+        transform.DOScaleY(0, mkAnimateTime)
             
             .OnStart(() => {
                 m_contents.SetActive(false);

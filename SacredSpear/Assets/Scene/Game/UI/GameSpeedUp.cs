@@ -10,7 +10,6 @@ public class GameSpeedUp : MonoBehaviour {
     float m_maxSpeed;
 
     void Start() {
-        GameInfo.mInstance.mGameSpeed = 1.0f;
         text = GetComponentInChildren<Text>();
     }
 
