@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour {
     private float m_PowerPoint =100.0f;
     private float m_PowerMagnification = 1.0f;
 
-    public int m_level =0;
+    public float m_level =0;
 
     // Use this for initialization
     void Start () {
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour {
         if (m_pointObj.mPoint > (int)powerpoint)
         {
             m_pointObj.mPoint -= (int)powerpoint;
-            m_level *= 2;
+            m_level *= 1.8f;
             m_PowerMagnification *= 1.7f;
         }
     }
