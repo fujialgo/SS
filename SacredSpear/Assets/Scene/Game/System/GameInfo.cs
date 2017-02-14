@@ -15,8 +15,7 @@ public class GameInfo : Singleton<GameInfo> {
     {
         get { return m_waveManager; }
     }
-
-
+		
     [SerializeField]
     float m_gameSpeed;
     public float mGameSpeed
@@ -24,8 +23,7 @@ public class GameInfo : Singleton<GameInfo> {
         get { return m_gameSpeed; }
         set { m_gameSpeed = value; }
     }
-
-
+		
     public bool mIsPause
     {
         get; set;
@@ -48,8 +46,6 @@ public class GameInfo : Singleton<GameInfo> {
         m_fadeManager.mFadeOut();
         mIsPause = false;
     }
-
-
 
     public void mSceneLoad(string str)
     {
