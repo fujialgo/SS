@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
 
+
+	[SerializeField]
+	private ButtonStateChange m_PowerUp;
+
     [SerializeField]
     private Point m_pointObj;
     private float m_PowerPoint =100.0f;
@@ -17,7 +21,7 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		IfuseCheck ();
 	}
 
     public void mWeaponPowerUp()
@@ -30,6 +34,20 @@ public class Weapon : MonoBehaviour {
             m_PowerMagnification *= 1.7f;
         }
     }
+
+	void IfuseCheck()
+	{
+		Debug.Log ("aaa");
+		if (m_PowerPoint * m_PowerMagnification < m_pointObj.mPoint)
+		{
+			m_PowerUp.GetComponent<ButtonStateChange> ().mSetInteractable (true);
+		}
+		else
+		{
+			m_PowerUp.GetComponent<ButtonStateChange>().mSetInteractable(false);
+		}
+
+	}
 
 
 }
