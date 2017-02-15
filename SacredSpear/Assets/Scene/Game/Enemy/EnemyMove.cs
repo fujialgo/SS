@@ -17,6 +17,10 @@ public class EnemyMove : MonoBehaviour {
     }
     [SerializeField]
     private int m_score;
+    public int mScore
+    {
+        get { return m_score; } set { m_score = value; }
+    }
 
     [SerializeField]
     private int m_velocity;
@@ -30,6 +34,14 @@ public class EnemyMove : MonoBehaviour {
     protected eEnemyState m_stateNum;
 
     protected float m_timer;
+
+
+    public void Updagrade(float mag)
+    {
+        m_hp = (int)(m_hp * mag);
+        m_score += (int)(m_score * (mag / 10));
+    }
+
 	// Use this for initialization
 	void Start () {
         //デリゲートによる分岐をしてみる

@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour {
         if(m_hiTable <= m_EnemyPrefs.Length-1) {
             m_hiTable += mkWaveAddtional;
         }
-
+        
         GameInfo.mInstance.mWaveManager.mWaveNum++;
         yield break;
     }
@@ -74,6 +74,10 @@ public class EnemySpawner : MonoBehaviour {
 //        Debug.Log(rand);
         var obj = Instantiate(m_EnemyPrefs[rand]);
         obj.transform.position = transform.position;
+        obj.GetComponent<EnemyMove>().Updagrade(GameInfo.mInstance.mWaveManager.mWaveNum);
+
+        //Debug.Log("Enemy" + obj.GetComponent<EnemyMove>().mHp + " " + obj.GetComponent<EnemyMove>().mScore);
+
         m_enemyCnt++;
     }
 

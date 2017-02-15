@@ -24,6 +24,12 @@ public class Weapon : MonoBehaviour {
 		IfuseCheck ();
 	}
 
+#if UNITY_EDITOR
+    //Editor 用デバッグ
+    void OnGUI() {
+        GUI.Box(new Rect(20, 100, 60, 30), m_level.ToString("#.#"));
+    }
+#endif
     public void mWeaponPowerUp()
     {
         float powerpoint = m_PowerPoint * m_PowerMagnification;
@@ -31,13 +37,14 @@ public class Weapon : MonoBehaviour {
         {
             m_pointObj.mPoint -= (int)powerpoint;
             m_level *= 1.8f;
-            m_PowerMagnification *= 1.7f;
+            m_PowerMagnification *= 2.5f;
         }
+      //  Debug.Log("Player"+m_level);
     }
 
 	void IfuseCheck()
 	{
-		Debug.Log ("aaa");
+//		Debug.Log ("aaa");
 		if (m_PowerPoint * m_PowerMagnification < m_pointObj.mPoint)
 		{
 			m_PowerUp.GetComponent<ButtonStateChange> ().mSetInteractable (true);

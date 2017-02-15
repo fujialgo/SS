@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 		}
 
 
-		Debug.Log (transform.eulerAngles.z);
+		//Debug.Log (transform.eulerAngles.z);
 
 		GameInfo info = GameInfo.mInstance;
 		if (info.mIsPause == true) {
