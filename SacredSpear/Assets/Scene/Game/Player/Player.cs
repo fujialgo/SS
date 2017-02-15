@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 		//	transform.eulerAngles= new Vector3(0,0,45);
 		//}
 
-		if (transform.eulerAngles.z >= 160 && transform.eulerAngles.z <= 360) {
+		if (transform.eulerAngles.z >= 180 && transform.eulerAngles.z <= 360) {
 			transform.eulerAngles= new Vector3(0,0,180);
 		}
 			

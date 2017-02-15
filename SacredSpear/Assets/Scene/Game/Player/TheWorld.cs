@@ -18,17 +18,15 @@ public class TheWorld : MonoBehaviour {
 
 		if(world_flag ==true){
 			m_pointObj.mPoint -= 2;
+			if (m_pointObj.mPoint <= 0) {
+				GameInfo info = GameInfo.mInstance;
+				Time.timeScale = info.mGameSpeed;
+				world_flag = false;
+				m_pointObj.mPoint = 0;
+
+			}
+
 		}
-
-
-		if (m_pointObj.mPoint <= 0) {
-			GameInfo info = GameInfo.mInstance;
-			Time.timeScale = info.mGameSpeed;
-			world_flag = false;
-			m_pointObj.mPoint = 0;
-
-		}
-			
 
 		if (Input.GetMouseButtonDown (1)) {
 			if (world_flag == false) {
