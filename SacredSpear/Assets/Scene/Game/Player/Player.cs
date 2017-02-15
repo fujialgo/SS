@@ -26,11 +26,11 @@ public class Player : MonoBehaviour
 			click_flag = true;
 		}
 	}
-		
-    void Update()
-	{
+
+	void Player_Angle(){
+
 		Ray ();
-	
+
 		Ray m_ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		Vector3 m_mousePos = m_ray.origin;
 		Vector3 m_diff = m_mousePos - transform.position;
@@ -40,21 +40,23 @@ public class Player : MonoBehaviour
 		float deg = Mathf.Atan2 (m_diff.y, m_diff.x) * Mathf.Rad2Deg;
 		transform.eulerAngles = new Vector3 (0, 0, deg - 90);
 
-		//if (transform.eulerAngles.z >=180 && transform.eulerAngles.z <=360){
-		//	transform.eulerAngles= new Vector3(0,0,45);
-		//}
-
-		if (transform.eulerAngles.z >= 180 && transform.eulerAngles.z <= 360) {
-			transform.eulerAngles= new Vector3(0,0,180);
+		if (transform.eulerAngles.z >= 160 && transform.eulerAngles.z <= 360) {
+			transform.eulerAngles= new Vector3(0,0,160);
 		}
-			
+
 		if (transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 60) {
 			transform.eulerAngles= new Vector3(0,0,60);
 		}
+	}
 
+		
+    void Update()
+	{
 
-		//Debug.Log (transform.eulerAngles.z);
+		Debug.Log (transform.eulerAngles);
 
+		Player_Angle ();
+		
 		GameInfo info = GameInfo.mInstance;
 		if (info.mIsPause == true) {
 			return;
@@ -67,7 +69,6 @@ public class Player : MonoBehaviour
 
 			weapon = GetComponent<Weapon> ();
 			obj.GetComponent<Spear> ().m_power = (int)weapon.m_level;
-			//Debug.Log (obj.GetComponent<Spear> ().m_power);
 			}
 		} 
 	}

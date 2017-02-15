@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
 
-
 	[SerializeField]
 	private ButtonStateChange m_PowerUp;
 
@@ -39,12 +38,10 @@ public class Weapon : MonoBehaviour {
             m_level *= 1.8f;
             m_PowerMagnification *= 2.5f;
         }
-      //  Debug.Log("Player"+m_level);
     }
 
 	void IfuseCheck()
 	{
-//		Debug.Log ("aaa");
 		if (m_PowerPoint * m_PowerMagnification < m_pointObj.mPoint)
 		{
 			m_PowerUp.GetComponent<ButtonStateChange> ().mSetInteractable (true);
@@ -53,8 +50,5 @@ public class Weapon : MonoBehaviour {
 		{
 			m_PowerUp.GetComponent<ButtonStateChange>().mSetInteractable(false);
 		}
-
 	}
-
-
 }
