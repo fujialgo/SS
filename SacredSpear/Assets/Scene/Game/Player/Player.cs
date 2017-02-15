@@ -3,13 +3,19 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+
+	[SerializeField]
     public GameObject bullet;
+	[SerializeField]
+	public GameObject bullet2;
+
     private Weapon weapon;
 
 	private bool click_flag =true;
 
     void Start()
     {
+		
     }
 		
 	void Ray(){
@@ -52,23 +58,29 @@ public class Player : MonoBehaviour
 		
     void Update()
 	{
-
-		Debug.Log (transform.eulerAngles);
-
 		Player_Angle ();
-		
+
 		GameInfo info = GameInfo.mInstance;
 		if (info.mIsPause == true) {
 			return;
 		}
 
 		if(click_flag==true){
-		if (Input.GetMouseButtonDown (0)) {
-			var obj = Instantiate (bullet, transform.position, Quaternion.identity) as GameObject;
-			obj.transform.eulerAngles = transform.eulerAngles;
-
 			weapon = GetComponent<Weapon> ();
-			obj.GetComponent<Spear> ().m_power = (int)weapon.m_level;
+			if (weapon.m_power_flag == false) {
+				if (Input.GetMouseButtonDown (0)) {
+					var obj = Instantiate (bullet, transform.position, Quaternion.identity) as GameObject;
+					obj.transform.eulerAngles = transform.eulerAngles;
+					weapon = GetComponent<Weapon> ();
+					obj.GetComponent<Spear> ().m_power = (int)weapon.m_level;
+				}
+			} else if (weapon.m_power_flag == true) {
+				if (Input.GetMouseButtonDown (0)) {
+					var obj = Instantiate (bullet2, transform.position, Quaternion.identity) as GameObject;
+					obj.transform.eulerAngles = transform.eulerAngles;
+					weapon = GetComponent<Weapon> ();
+					obj.GetComponent<Spear> ().m_power = (int)weapon.m_level;
+				}
 			}
 		} 
 	}

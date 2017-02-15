@@ -8,9 +8,12 @@ public class Spear: MonoBehaviour
     [SerializeField]
     public int m_speed;
 
+	private SpriteChange m_Spear;
+
+
     void Start()
     {
-    
+		
     }
 
     void Update()
@@ -21,7 +24,7 @@ public class Spear: MonoBehaviour
         }
         transform.Translate(Vector3.up * m_speed * Time.deltaTime);
     }
-
+		
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy")
